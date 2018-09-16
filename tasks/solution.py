@@ -14,7 +14,6 @@ else:
     print("not digit")
 
 #from cmd run python.exe solution.py
-#this task is verified and passed
 
 
 

@@ -1,6 +1,7 @@
 import json
 import tempfile
 import os
+import argparse
 
 storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
 
@@ -15,8 +16,11 @@ else:
     with open(storage_path, 'r') as f:
         frame = json.load(f)
 
-key = input("Key: ")
-val = input("Val: ")
+parser = argparse.ArgumentParser()
+key = parser.add_argument('-1', '--key', action='store')
+val = parser.add_argument('-1', '--val', action='store')
+#key = input("Key: ")
+#val = input("Val: ")
 
 #frame[key] = val
 

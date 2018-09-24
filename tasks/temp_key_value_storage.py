@@ -1,9 +1,12 @@
 import json
 import tempfile
 import os
+import sys
 import argparse
 
 storage_path = os.path.join(tempfile.gettempdir(), 'storage.data')
+print(storage_path)
+
 
 def is_non_zero_file(fpath):
     return os.path.isfile(fpath) and os.path.getsize(fpath) > 0
@@ -16,13 +19,24 @@ else:
     with open(storage_path, 'r') as f:
         frame = json.load(f)
 
-parser = argparse.ArgumentParser()
-key = parser.add_argument('-1', '--key', action='store')
-val = parser.add_argument('-1', '--val', action='store')
-#key = input("Key: ")
-#val = input("Val: ")
 
-#frame[key] = val
+def createParser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--name', '-k', '--key', required=True)
+   # parser.add_argument('-n', '--name', '--val')
+
+    return parser
+
+
+if __name__ == '__main__':
+    parser = createParser()
+    namespace = parser.parse_args(sys.argv[1:])
+    key=str(namespace.name)
+
+# key = input("Key: ")
+# val = input("Val: ")
+val = "test"
+# frame[key] = val
 
 if key in frame:
     temp_val = frame.get(key)
@@ -36,8 +50,6 @@ else:
 
 print(frame)
 
-search_key=input("Search key: ")
+search_key = input("Search key: ")
 search_result = frame.get(search_key)
 print("Searched values: ", search_result)
-
-

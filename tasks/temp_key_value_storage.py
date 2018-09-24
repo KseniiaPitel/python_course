@@ -23,7 +23,7 @@ else:
 def createParser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--name', '-k', '--key', required=True)
-   # parser.add_argument('-n', '--name', '--val')
+    parser.add_argument('--val')
 
     return parser
 
@@ -32,10 +32,10 @@ if __name__ == '__main__':
     parser = createParser()
     namespace = parser.parse_args(sys.argv[1:])
     key=str(namespace.name)
+    val=str(namespace.val)
 
 # key = input("Key: ")
 # val = input("Val: ")
-val = "test"
 # frame[key] = val
 
 if key in frame:
@@ -48,8 +48,12 @@ else:
     with open(storage_path, 'w') as f:
         (f.write(json.dumps(frame, indent=1)))
 
-print(frame)
+#print(frame)
 
-search_key = input("Search key: ")
+if __name__ == '__main__':
+    parser = createParser()
+    namespace = parser.parse_args(sys.argv[1:])
+
+search_key = str(namespace.name)
 search_result = frame.get(search_key)
-print("Searched values: ", search_result)
+print(search_result)

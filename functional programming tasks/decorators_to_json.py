@@ -11,7 +11,6 @@ def to_json(func_to_decorate):
 
     return wrapper
 
-"""
 @to_json
 def get_data():
     return {
@@ -22,4 +21,3 @@ def get_data():
 print(get_data())
 print(get_data.__name__)
 print(get_data.__doc__)
-"""

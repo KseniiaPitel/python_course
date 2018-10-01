@@ -1,7 +1,23 @@
 import csv
 
-with open("C:\python project\csv-test.csv") as csv_fd:
-    reader = csv.reader(csv_fd, delimiter=';')
-    next(reader)  # пропускаем заголовок
+
+f = open("C:\python project\coursera_week3_cars(1).csv", 'r')
+
+my_list = []
+with f:
+    reader = csv.reader(f, delimiter=';')
+
     for row in reader:
-        print(row)
+        next(reader)
+        if 'truck' in row:
+            my_list = row
+            print(my_list)
+
+
+print(type(my_list))
+
+
+
+
+
+

@@ -1,22 +1,10 @@
-car_type = property()
+import csv
 
+with open("C:\python project\coursera_week3_cars(1).csv") as csv_fd:
+    reader = csv.reader(csv_fd, delimiter=';')
+    next(reader)  # пропускаем заголовок
+    for row in reader:
+        if len(row)!=7:
 
-@car_type.setter
-def car_type_checker(self, value):
-    if value == "car":
-        self._car_type = "caaaar"
-    else:
-        print("Car type can be car, truck or scep_machine")
+        print(row)
 
-
-@car_type.getter
-def car_type_checker(self):
-    return self._car_type
-
-
-@property
-def cat_type_checker(self, car_type):
-    if car_type == "car":
-        return self._car_type
-    else:
-        print("11111")

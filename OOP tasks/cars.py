@@ -29,9 +29,9 @@ class Truck(CarBase):
         self.body_whl = body_whl
         self.car_type = "truck"
 
-    body_width = 0
-    body_height = 0
-    body_length = 0
+    body_width = 0.0
+    body_height = 0.0
+    body_length = 0.0
 
     def __str__(self):
         return self.brand, self.photo_file_name, self.carrying, self.body_whl

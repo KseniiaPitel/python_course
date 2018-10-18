@@ -15,11 +15,11 @@ class File:
     def __next__(self):
         count = 0
         with open(self.my_file, 'r') as f:
-            result = f.readlines()
-            count += 1
-            if count > len(f.readlines()):
+            for line in f.readlines():
+                return line
+
+            if count > sum(1 for _ in f):
                 raise StopIteration
-            return result
 
     def write(self, *args):
         with open(self.my_file, 'w') as f:
@@ -36,16 +36,19 @@ class File:
         return new_text
 
 
-first = File('C:\python project\\first.txt')
-second = File('C:\python project\second.txt')
+#first = File('C:\python project\\first.txt')
+#second = File('C:\python project\second.txt')
 
-new_obj = first + second
-new_obj_path = os.path.join(tempfile.gettempdir(), 'my_temp_file')
-with open(new_obj_path, 'w') as f:
-    f.write(str(new_obj))
+#new_obj = first + second
+#new_obj_path = os.path.join(tempfile.gettempdir(), 'my_temp_file')
+#with open(new_obj_path, 'w') as f:
+ #   f.write(str(new_obj))
 
-for line in File('C:\python project\second.txt'):
-    print(line)
+
+
+#print(next(File('C:\python project\second.txt')))
+#for line in File('C:\python project\second.txt'):
+#    print(line)
 
 # MY CHECKER BLOCK
 # print(new_obj)

@@ -44,16 +44,24 @@ class File:
             f.write(str(self.new_obj_path))
         return self.new_obj_path
 
+    def __getattr__(self, item):
+        if item == "new_obj_path":
+            print("Path to temp file ")
+            return os.path.join(tempfile.gettempdir(), 'my_temp_file')
+        else:
+            raise AttributeError
 
 
 
-#first = File('C:\python project\\first.txt')
-#second = File('C:\python project\second.txt')
 
 
-#new_obj = first + second
+first = File('C:\python project\\first.txt')
+second = File('C:\python project\second.txt')
 
-#print(new_obj)
 
-for line in File('C:\python project\second.txt'):
-    print(line)
+new_obj = first + second
+
+print(first.new_obj_path)
+
+#for line in File('C:\python project\\first.txt'):
+#    print(line)

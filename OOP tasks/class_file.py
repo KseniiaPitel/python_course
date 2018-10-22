@@ -5,21 +5,24 @@ import os
 class File:
     def __init__(self, my_file):
         self.my_file = my_file
+        self.new_obj_path = None
 
     def __str__(self):
         return self.my_file
 
     def __iter__(self):
+        self.count = 0
+        with open(self.my_file, 'r') as f:
+            self.result = f.readlines()
         return self
 
     def __next__(self):
-        count = 0
-        with open(self.my_file, 'r') as f:
-            result = f.readlines()
-            count += 1
-            if count > len(f.readlines()):
-                raise StopIteration
-            return result
+        if self.count < len(self.result):
+            res = self.result[self.count]
+            self.count += 1
+            return res.strip("\n")
+        else:
+            raise StopIteration
 
     def write(self, *args):
         with open(self.my_file, 'w') as f:
@@ -35,17 +38,25 @@ class File:
         )
         return new_text
 
+    def __call__(self, new_obj_path):
+        self.new_obj_path = os.path.join(tempfile.gettempdir(), 'my_temp_file')
+        with open(new_obj_path, 'w') as f:
+            f.write(str(self.new_obj_path))
+        return self.new_obj_path
+
+
+
 
 first = File('C:\python project\\first.txt')
 second = File('C:\python project\second.txt')
 
-new_obj = first + second
-new_obj_path = os.path.join(tempfile.gettempdir(), 'my_temp_file')
-with open(new_obj_path, 'w') as f:
-    f.write(str(new_obj))
 
-for line in File('C:\python project\second.txt'):
-    print(line)
+new_obj = first + second
+
+print(new_obj)
+
+#for line in File('C:\python project\StructuredQuery.log'):
+#    print(line)
 
 # MY CHECKER BLOCK
 # print(new_obj)

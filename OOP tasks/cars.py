@@ -5,7 +5,8 @@ class CarBase:
         self.carrying = carrying
 
     def __str__(self):
-        return self.brand, self.photo_file_name, self.carrying
+        return '{}, {}, {}'.format(self.brand, self.photo_file_name, self.carrying)
+        #return self.brand, self.photo_file_name, self.carrying
 
     def get_photo_file_ext(self):
         import os
@@ -20,7 +21,8 @@ class Car(CarBase):
         self.car_type = "car"
 
     def __str__(self):
-        return self.brand, self.photo_file_name, self.carrying, self.passenger_seats_count
+        return '{}, {}, {}, {}'.format(self.brand, self.photo_file_name, self.carrying, self.passenger_seats_count)
+       # return self.brand, self.photo_file_name, self.carrying, self.passenger_seats_count
 
 
 class Truck(CarBase):

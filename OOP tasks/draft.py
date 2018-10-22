@@ -1,10 +1,12 @@
-import csv
+from class_file import File
 
-with open("C:\python project\coursera_week3_cars(1).csv") as csv_fd:
-    reader = csv.reader(csv_fd, delimiter=';')
-    next(reader)  # пропускаем заголовок
-    for row in reader:
-        if len(row)!=7:
 
-        print(row)
+first = File('C:\python project\\first.txt')
+second = File('C:\python project\second.txt')
 
+
+new_obj = first + second
+
+print(new_obj)
+for line in File(new_obj):
+    print(line)

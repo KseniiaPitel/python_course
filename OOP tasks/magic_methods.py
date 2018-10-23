@@ -33,35 +33,20 @@ class File:
             return f.read()
 
     def __add__(self, other):
-        new_text = File(
-            self.get_content() + other.get_content()
-        )
+        self.new_obj_path = os.path.join(tempfile.gettempdir(), 'my_temp_file')
+        with open(self.new_obj_path, 'w') as f:
+            f.write(self.get_content() + other.get_content())
+        new_text = File(self.new_obj_path)
         return new_text
 
-    def __call__(self, new_obj_path):
-        self.new_obj_path = os.path.join(tempfile.gettempdir(), 'my_temp_file')
-        with open(new_obj_path, 'w') as f:
-            f.write(str(self.new_obj_path))
-        return self.new_obj_path
 
-    def __getattr__(self, item):
-        if item == "new_obj_path":
-            print("Path to temp file ")
-            return os.path.join(tempfile.gettempdir(), 'my_temp_file')
-        else:
-            raise AttributeError
+#first = File('C:\python project\\first.txt')
+#second = File('C:\python project\second.txt')
 
 
+#new_obj = first + second
 
-
-
-first = File('C:\python project\\first.txt')
-second = File('C:\python project\second.txt')
-
-
-new_obj = first + second
-
-print(first.new_obj_path)
+#print(new_obj)
 
 #for line in File('C:\python project\\first.txt'):
 #    print(line)

@@ -8,7 +8,7 @@ class Value:
     def __set__(self, instance, amount):
         self.amount = amount - amount * instance.commission
 
-"""
+
 class Account:
     amount = Value()
 
@@ -21,4 +21,4 @@ new_account.amount = 100
 
 print(new_account.amount)
 print(new_account.commission)
-"""
+
